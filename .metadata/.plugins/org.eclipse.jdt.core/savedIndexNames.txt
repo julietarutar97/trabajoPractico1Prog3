@@ -1,8 +1,0 @@
-INDEX VERSION 1.134+C:\Users\julie\OneDrive\Documentos\tP1Lab3\.metadata\.plugins\org.eclipse.jdt.core
-4219509163.index
-1865797976.index
-2374424134.index
-2453959353.index
-577874752.index
-1846186176.index
-1092920950.index
