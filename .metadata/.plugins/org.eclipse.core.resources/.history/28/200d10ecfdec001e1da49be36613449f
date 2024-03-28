@@ -1,0 +1,9 @@
+package tp1;
+
+public class Persona {
+	Integer id;
+	String apellido;
+	String nombre;
+	Integer edad;
+	Long dni;
+}
