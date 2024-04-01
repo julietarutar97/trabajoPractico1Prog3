@@ -1,6 +1,8 @@
 package trabajoPractico1;
 
-public class Persona {
+import java.util.*;
+
+public class Persona implements Comparator<Persona> , Comparable<Persona> {
 	Integer id;
 	String apellido;
 	String nombre;
@@ -35,5 +37,19 @@ public class Persona {
 		this.edad = edad;
 		this.dni = dni;
 	}
+
+	@Override
+	public int compareTo(Persona o) {
+		return (this.nombre).compareTo(o.nombre);
+	}
+
+	@Override
+	public int compare(Persona o1, Persona o2) {
+		if(o1.getApellido() == o2.getApellido()) {
+			return o1.getNombre().compareTo(o2.getNombre());
+		}
+		else return o1.getApellido().compareTo(o2.getApellido());
+	}
+
 
 }

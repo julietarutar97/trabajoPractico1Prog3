@@ -17,7 +17,7 @@ public class Alumno extends Persona {
 		return promedio;
 	}
 
-	public Alumno(Integer id, String apellido, String nombre, Integer edad, Long dni, Integer nroLegajo,
+	public Alumno(Integer id, String apellido, String nombre, Integer edad, long dni, Integer nroLegajo,
 			Integer materiasAprobadas, double promedio) {
 		super(id, apellido, nombre, edad, dni);
 		this.nroLegajo = nroLegajo;
