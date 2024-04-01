@@ -3,7 +3,7 @@ package trabajoPractico1;
 public class Alumno extends Persona {
 	Integer nroLegajo;
 	Integer materiasAprobadas;
-	double promedio;
+	private double promedio;
 
 	public Integer getNroLegajo() {
 		return nroLegajo;

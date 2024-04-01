@@ -1,6 +1,7 @@
 package trabajoPractico1;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
 import com.github.javafaker.Faker;
 
@@ -9,7 +10,7 @@ public class Generadora {
 	public static void crearProfesores(int cantProfesores, ArrayList profesores) throws Exception {
 		try {
 			Profesor nuevoProfesor;
-			Faker faker = new Faker();
+			Faker faker = new Faker(new Locale("es"));
 			String[] profesiones = { "Ingeniero en Sistemas", "Licenciado en letras", "Técnico en Programación" };
 			for (int i = 0; i < cantProfesores; i++) {
 				nuevoProfesor = new Profesor(i, faker.name().lastName(), faker.name().firstName(),
@@ -29,7 +30,7 @@ public class Generadora {
 	public static void crearAlumnos(int cantAlumnos, ArrayList alumnos) throws Exception {
 		try {
 			Alumno nuevoAlumno;
-			Faker faker = new Faker();
+			Faker faker = new Faker(new Locale("es"));
 			for (int i = 0; i < cantAlumnos; i++) {
 				nuevoAlumno = new Alumno(i, faker.name().lastName(), faker.name().firstName(),
 						faker.number().numberBetween(18, 40), faker.number().numberBetween(30000000, 50000000),
