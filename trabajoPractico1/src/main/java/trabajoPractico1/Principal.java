@@ -49,11 +49,19 @@ public class Principal {
 		JOptionPane.showMessageDialog(null, "El alumno con menor promedio es: " + alumnoMin.getNombre() + " "
 				+ alumnoMin.getApellido() + ", promedio: " + alumnoMin.getPromedio());
 
-		//Lista con Promedios mayores a 7
-		
-		JOptionPane.showMessageDialog(null,"Promedios mayores a 7:\n" + rangoPromedios(alumnos));
-	
+		// Lista con Promedios mayores a 7
+
+		JOptionPane.showMessageDialog(null, "Promedios mayores a 7:\n" + rangoPromedios(alumnos));
+
+		// Profesores ing. en sistemas
+		JOptionPane.showMessageDialog(null, tituloProfesores(profesores));
+
+		// Profesores ordenados por edad
+		JOptionPane.showMessageDialog(null, edadProfesores(profesores));
+
 	}
+
+	// FIN MAIN
 
 	private static String armarListaAlumnos(ArrayList<Alumno> lista) {
 		String listaAux = "";
@@ -88,36 +96,65 @@ public class Principal {
 
 	private static String rangoPromedios(ArrayList<Alumno> alumnos) {
 		ArrayList<Alumno> copia = new ArrayList<Alumno>();
+		double promedioTotal = 0;
+		double promedioMayores = 0;
 		String aux = "";
-		/*
-		 * for (int i = 0; i < alumnos.size(); i++) { if (alumnos.get(i).getPromedio() >
-		 * 6) { copia.add(alumnos.get(i)); } } for (int i = 1; i < copia.size(); i++) {
-		 * if(copia.get(i).getPromedio()>copia.get(i-1).getPromedio()) {
-		 * 
-		 * } }
-		 */
-
-		for (Alumno alumno : alumnos)
-			if (alumno.getPromedio() >= 7)
+		for (Alumno alumno : alumnos) {
+			promedioTotal += alumno.getPromedio();
+			if (alumno.getPromedio() >= 7) {
+				promedioMayores += alumno.getPromedio();
 				copia.add(alumno);
 
+			}
+		}
 		Alumno max = null;
-		while(copia.size()>0) {
+		promedioMayores = Math.round((promedioMayores / copia.size())*100)/100;
+		promedioTotal = Math.round((promedioTotal / alumnos.size())*100)/100;
+		while (copia.size() > 0) {
 			max = copia.get(0);
-			for(int i=0;i<copia.size();i++) {
-				if(max.getPromedio()< copia.get(i).getPromedio()) max = copia.get(i);
+			for (int i = 0; i < copia.size(); i++) {
+
+				if (max.getPromedio() < copia.get(i).getPromedio())
+					max = copia.get(i);
 			}
 			aux += max.getNombre() + " " + max.getApellido() + ", Promedio: " + max.getPromedio() + "\n";
 			copia.remove(max);
 		}
-		
+		aux += "Promedio total de todos los alumnos: " + promedioTotal + "\n Promedio de los mejores alumnos: "
+				+ promedioMayores;
 		return aux;
 	}
 
-	/*
-	 * private static void identificarPromedio(ArrayList<Persona> persona) {
-	 * double[] Promedios = -1;
-	 * 
-	 * return Promedios; }
-	 */
+	private static String tituloProfesores(ArrayList<Profesor> profesores) {
+		String lista = "Profesores con título de ing. en sistemas: \n";
+		for (int i = 0; i < profesores.size(); i++) {
+			if (profesores.get(i).titulo == "Ingeniero en Sistemas") {
+				lista += profesores.get(i).getNombre() + " " + profesores.get(i).getApellido() + "\n";
+			}
+		}
+		return lista;
+	}
+
+	private static String edadProfesores(ArrayList<Profesor> profesores) {
+		ArrayList<Profesor> copia = new ArrayList<Profesor>();
+		String aux = "Lista de profesores por edad \n";
+		int totalEdad = 0;
+		Profesor max = null;
+		for (Profesor profesor : profesores)
+			copia.add(profesor);
+
+		while (copia.size() > 0) {
+			max = copia.get(0);
+			for (int i = 0; i < copia.size(); i++) {
+				if (max.getEdad() < copia.get(i).getEdad())
+					max = copia.get(i);
+			}
+			aux += max.getNombre() + " " + max.getApellido() + ", Edad: " + max.getEdad() + "\n";
+			copia.remove(max);
+
+			totalEdad += max.getEdad();
+		}
+		aux += "Edad total: " + totalEdad;
+		return aux;
+	}
 }
