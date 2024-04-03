@@ -32,13 +32,13 @@ public class Principal {
 
 		}
 
-		JOptionPane.showMessageDialog(null, "Lista de alumnos: " + "\n" + armarListaAlumnos(alumnos));
-		JOptionPane.showMessageDialog(null, "Lista de Profesores: " + "\n" + armarListaProfesor(profesores));
+		JOptionPane.showMessageDialog(null, "Lista de alumnos: " + "\n" + armarLista(alumnos));
+		JOptionPane.showMessageDialog(null, "Lista de Profesores: " + "\n" + armarLista(profesores));
 
 		ordenarPorNombre(alumnos);
 		ordenarPorLegajo(profesores);
-		JOptionPane.showMessageDialog(null, "Lista de alumnos: " + "\n" + armarListaAlumnos(alumnos));
-		JOptionPane.showMessageDialog(null, "Lista de Profesores: " + "\n" + armarListaProfesor(profesores));
+		JOptionPane.showMessageDialog(null, "Lista de alumnos: " + "\n" + armarLista(alumnos));
+		JOptionPane.showMessageDialog(null, "Lista de Profesores: " + "\n" + armarLista(profesores));
 
 		// MAYOR Y MENOR PROMEDIO
 		Alumno alumnoMax = Collections.max(alumnos, Comparator.comparing(Alumno::getPromedio));
@@ -63,17 +63,17 @@ public class Principal {
 
 	// FIN MAIN
 
-	private static String armarListaAlumnos(ArrayList<Alumno> lista) {
+	private static<T extends Persona> String armarLista(ArrayList<T> lista) {
 		String listaAux = "";
 
-		for (Alumno persona : lista) {
+		for (T persona : lista) {
 			listaAux += persona.getNombre() + " " + persona.getApellido() + "\n";
 
 		}
 
 		return listaAux;
 	}
-
+/*
 	private static String armarListaProfesor(ArrayList<Profesor> lista) {
 		String listaAux = "";
 
@@ -84,7 +84,7 @@ public class Principal {
 		}
 
 		return listaAux;
-	}
+	}*/
 
 	private static void ordenarPorNombre(ArrayList<Alumno> personas) {
 		Collections.sort(personas);
@@ -104,12 +104,11 @@ public class Principal {
 			if (alumno.getPromedio() >= 7) {
 				promedioMayores += alumno.getPromedio();
 				copia.add(alumno);
-
 			}
 		}
 		Alumno max = null;
-		promedioMayores = Math.round((promedioMayores / copia.size())*100)/100;
-		promedioTotal = Math.round((promedioTotal / alumnos.size())*100)/100;
+		promedioMayores = Math.round((promedioMayores / copia.size()) * 100) / 100;
+		promedioTotal = Math.round((promedioTotal / alumnos.size()) * 100) / 100;
 		while (copia.size() > 0) {
 			max = copia.get(0);
 			for (int i = 0; i < copia.size(); i++) {
